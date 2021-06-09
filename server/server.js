@@ -43,8 +43,13 @@ app.post('/register', async (req, res) =>{
     return;
   }
   const encryptedPassword = bcrypt.hashSync(password, 10)
-  const result = await db.query(`INSERT INTO users (user_name, user_email, user_password) VALUES ('${name}', '${email}', '${encryptedPassword}') RETURNING user_name, user_email`)
-  res.send(result)
+  let result = await db.query(`INSERT INTO users (user_name, user_email, user_password) VALUES ('${name}', '${email}', '${encryptedPassword}') RETURNING user_name, user_email`)
+  result = result.rows[0]
+  let token = jwt.sign({
+    name: result.user_name,
+    email: result.user_email
+  }, SECRET_KEY)
+  res.json({token})
 })
 
 
