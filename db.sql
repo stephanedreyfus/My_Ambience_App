@@ -9,7 +9,7 @@
 --  ALTER TABLE table_name DROP COLUMN column_name;
 
 --  TO DELETE A TABLE:
---  DROP TABLE tablename;
+--  DROP TABLE tablename:
 
 --  add to items to table
 --  insert into tablename ('name', 'username', 'password') values('maria', 'lupe', 'mlupe')
